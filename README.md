@@ -33,29 +33,6 @@ git clone <este_repo>
 cd entrevista-tts
 docker compose up --build
 ```
-
-````markdown
-# Entrevista TTS App
-
-Aplicación para extraer pares Pregunta/Respuesta (P/R) de un PDF, limpiar y generar prompts de entonación con un LLM, editar el resultado desde un frontend amigable y generar audios TTS por bloque.
-
-## Decisiones clave
-
-- LLM por defecto: `gpt-4o-mini` (configurable via `OPENAI_MODEL_LLM`).
-- TTS por defecto: `gpt-4o-mini-tts` (configurable via `OPENAI_MODEL_TTS`). Voces por defecto: `onyx` (preguntas) y `sage` (respuestas). Estos valores están en `backend/app/config.py`.
-- Frontend: React + Vite + Tailwind. Edición inline, tarjetas por registro y modales para prompts ad-hoc.
-- Backend: FastAPI. Persistencia ligera en CSV dentro de `backend/app/static/voices/` y audios mp3 organizados por bloque.
-- Contenedores: Docker Compose (servicios `backend` y `frontend`).
-
-## Requisitos
-
-- Docker y Docker Compose (o Docker Desktop).
-- Variable de entorno `OPENAI_API_KEY` con permiso para los modelos que uses.
-  ```bash
-  export OPENAI_API_KEY="sk-..."
-  ```
-````
-
 - Opcional: `OPENAI_API_BASE` si usas Azure OpenAI o un proxy compatible.
 
 Variables importantes (valores por defecto en `backend/app/config.py`):

@@ -1,0 +1,44 @@
+%%{init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#0f172a', 'edgeLabelBackground':'#ffffff' }}}%%
+flowchart TB
+  subgraph FE["Frontend"]
+    A["UI (React)"]
+    A -->|API calls| B["API Client (axios)"]
+  end
+
+  subgraph BE["Backend"]
+    C["API Gateway / Routers"]
+    C --> D["PDF Parser Service"]
+    C --> E["LLM Processing Service"]
+    C --> F["TTS Service"]
+    C --> G["CSV Store Service"]
+    C --> H["Project Info / Config"]
+  end
+
+  subgraph EXT["External"]
+    I["OpenAI / LLM Provider"]
+    J["TTS Provider (optional external)"]
+  end
+
+  subgraph STORAGE["Storage"]
+    K["Filesystem: static/voices/"]
+    L["Backups: entrevista.csv.bak*"]
+  end
+
+  B -->|/api/*| C
+  D -->|text segments| E
+  E -->|rows / prompts| G
+  E -->|prompts| F
+  F -->|mp3 files| K
+  G -->|CSV files| K
+  E -->|calls| I
+  F -->|if external| J
+  C -->|reads/writes| K
+  K -->|backup sync| L
+
+  classDef external fill:#f8fafc,stroke:#94a3b8
+  class I,J external
+
+  %% Notes
+  subgraph NOTES["Notes"]
+    N1("Flows: Upload PDF → Parse → LLM (clean/normalize) → CSV store → TTS → mp3 in static/voices")
+  end
