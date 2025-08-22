@@ -1,0 +1,12 @@
+# Ignorar los ficheros dentro de static/voices (p.ej. mp3, csv, logs)
+# pero mantener la estructura de carpetas en el repositorio.
+# Añadir un archivo `static/voices/.gitkeep` para que Git mantenga la carpeta vacía si se desea.
+static/voices/*
+!static/voices/.gitkeep
+
+# Ignorar logs y ficheros binarios dentro de voices
+static/voices/**/*.mp3
+static/voices/**/.log
+static/voices/**/*.csv
+
+static

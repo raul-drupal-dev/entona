@@ -1,0 +1,38 @@
+
+version: "3.9"
+
+
+services:
+  backend:
+    build: ./backend
+    container_name: entrevista_tts_backend
+    env_file:
+      - .env
+    volumes:
+      - ./backend/app/static/voices:/app/app/static/voices
+      - ./backend/app:/app/app
+    ports:
+      - "${PORT:-8000}:8000"
+    # En desarrollo queremos que Python recargue al cambiar archivos.
+    # Si prefieres no usar reload en producción, mueve esto a un compose override o
+    # usa una imagen separada para dev.
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: entrevista_tts_frontend
+    env_file:
+      - .env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "${VITE_PORT:-5173}:5173"
+    # Override the container command to explicitly pass host 0.0.0.0 for Vite
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    depends_on:
+      - backend
+
+  # ...existing services...
