@@ -1,4 +1,4 @@
-# TODOs y Ideas — Proyecto TTS Interview App
+# TODOs y Ideas — Entona
 
 Fecha: 2025-08-22
 
