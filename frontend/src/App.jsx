@@ -218,7 +218,7 @@ export default function App() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="max-w-6xl mx-auto p-4">
         <header className="flex items-center justify-between py-4">
-          <h1 className="text-2xl font-bold">Entrevista → CSV → TTS</h1>
+          <h1 className="text-2xl font-bold">🎙️ Entona - Entrevista → CSV → TTS</h1>
         </header>
 
         {/* Tabla de proyectos solo si no hay proyecto seleccionado */}

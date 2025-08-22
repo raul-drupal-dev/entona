@@ -1,4 +1,6 @@
-# Entrevista TTS App
+# 🎙️ Entona
+
+> Entona — Generador de entonaciones y audios TTS para entrevistas.
 
 Herramienta para:
 
@@ -33,6 +35,7 @@ git clone <este_repo>
 cd entrevista-tts
 docker compose up --build
 ```
+
 - Opcional: `OPENAI_API_BASE` si usas Azure OpenAI o un proxy compatible.
 
 Variables importantes (valores por defecto en `backend/app/config.py`):
